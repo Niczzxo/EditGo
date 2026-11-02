@@ -37,14 +37,20 @@ class VideoExporter(private val context: Context) {
         if (outputFile.exists()) outputFile.delete()
 
         return suspendCancellableCoroutine { continuation ->
-            val clipping = androidx.media3.common.MediaItem.ClippingConfiguration
+            // Clipping goes on the MediaItem, not on EditedMediaItem:
+            // EditedMediaItem.Builder has no setClippingConfiguration
+            // method (that was the run #13 compile error). The official
+            // Media3 trim pattern sets it on MediaItem.Builder.
+            val clipping = MediaItem.ClippingConfiguration
                 .Builder()
                 .setStartPositionMs(trim.startSec * 1_000L)
                 .setEndPositionMs(trim.endSec * 1_000L)
                 .build()
-            val editedItem = EditedMediaItem.Builder(MediaItem.fromUri(inputUri))
+            val mediaItem = MediaItem.Builder()
+                .setUri(inputUri)
                 .setClippingConfiguration(clipping)
                 .build()
+            val editedItem = EditedMediaItem.Builder(mediaItem).build()
             // NOTE: quality.heightPx is recorded on the export for v2
             // (Transformer video transcoding to an exact height). In v1
             // the trim keeps the source resolution; forcing a resize here
