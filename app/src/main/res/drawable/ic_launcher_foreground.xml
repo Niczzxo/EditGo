@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive-icon foreground: the EditGo logo, centred in the safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#8B5CF6"
+        android:pathData="M26,14h56a12,12 0 0,1 12,12v56a12,12 0 0,1 -12,12H26a12,12 0 0,1 -12,-12V26a12,12 0 0,1 12,-12z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,38L74,54L46,70z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M64,80L82,62" />
+</vector>
