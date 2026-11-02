@@ -59,6 +59,13 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
+    // Views Material library: provides the XML theme
+    // Theme.Material3.DayNight.NoActionBar used as the parent of
+    // Theme.EditGo in res/values/themes.xml. The Compose material3
+    // library does NOT contain that XML style, so without this
+    // dependency AAPT fails with "resource style/Theme.Material3
+    // .DayNight.NoActionBar not found" in processDebugResources.
+    implementation("com.google.android.material:material:1.12.0")
 
     // Media3: real video playback + trim export (Transformer). No other
     // video SDK is used; export in v1 trims only (filters are v2).
